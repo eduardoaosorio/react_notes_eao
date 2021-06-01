@@ -1,0 +1,32 @@
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+header {
+  padding: 3rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header > h1 {
+  font-size: 4.8rem;
+  display: flex;
+  align-items: center;
+  padding-right: 1.8rem;
+}
+
+.app-logo {
+  height: 5.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .app-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
