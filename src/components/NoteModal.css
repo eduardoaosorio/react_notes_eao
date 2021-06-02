@@ -1,0 +1,107 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.note-modal {
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 2.5rem;
+  height: 40rem;
+  max-height: 100%;
+  width: 50rem;
+  max-width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1010;
+}
+
+.note-modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.note-modal__close-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.note-modal__heading {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.note-modal__title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.3rem;
+}
+
+.note-modal__text {
+  font-size: 1.6rem;
+}
+
+.note-modal,
+.note-modal__title,
+.note-modal__text {
+  background-color: var(--color-green);
+  border-radius: 10px;
+}
+
+.note-modal__title,
+.note-modal__text {
+  padding: 1rem;
+  border: none;
+}
+
+.note-modal__title::placeholder,
+.note-modal__text::placeholder {
+  font-family: "Inter var", sans-serif;
+  color: var(--color-light-grey-1);
+}
+
+.note-modal__title:focus,
+.note-modal__text:focus {
+  outline: none;
+}
+
+.note-modal__text {
+  display: block;
+  resize: none;
+  margin-bottom: 2rem;
+  height: 100%;
+}
+
+.note-modal__btn {
+  font-weight: 600;
+  font-size: 1.8rem;
+  border-radius: 10px;
+  padding: 1.2rem;
+  border: none;
+  box-shadow: 0 3rem 8rem rgba(0, 0, 0, 0.7);
+}
+
+.scroll::-webkit-scrollbar {
+  width: 3px;
+}
+.scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: var(--color-light-grey-1);
+  visibility: hidden;
+}
+.scroll:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+.scroll {
+  overflow-y: auto;
+}
