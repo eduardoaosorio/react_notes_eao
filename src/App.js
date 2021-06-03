@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="app-container">
       <Header />
-      <NoteModal open={true} />
+      {/* <NoteModal open={true} /> */}
       <Notes />
     </div>
   );

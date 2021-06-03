@@ -82,3 +82,19 @@
   width: 2rem;
   fill: var(--color-dark-grey-1);
 }
+
+@media screen and (max-width: 626px) {
+  .actions-menu > div:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+
+  .search__input {
+    font-size: 1.7rem;
+  }
+}
+
+@media screen and (max-width: 390) {
+  .search__input {
+    font-size: 1.2rem;
+  }
+}

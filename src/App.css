@@ -28,6 +28,7 @@ body {
   box-sizing: border-box;
   font-size: 1.6rem;
   font-family: "Inter", sans-serif;
+  padding: 0 2rem;
 }
 
 *,
@@ -39,6 +40,25 @@ body {
 }
 
 .app-container {
-  width: 120rem;
+  max-width: 120rem;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 969px) {
+  html {
+    font-size: 56.5%;
+  }
+}
+
+@media screen and (max-width: 870px) {
+  html {
+    font-size: 50.5%;
+  }
+}
+
+@media screen and (max-width: 776px) {
+  html {
+    font-size: 45.5%;
+  }
+}
+

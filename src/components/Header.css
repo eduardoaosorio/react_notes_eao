@@ -30,3 +30,14 @@ header > h1 {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+@media screen and (max-width: 626px) {
+  header {
+    flex-direction: column;
+  }
+
+  header > h1 {
+    font-size: 6rem;
+    margin-bottom: 2rem;
+  }
+}
