@@ -39,6 +39,15 @@ body {
   padding: 0;
 }
 
+/* global button styles */
+button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .app-container {
   max-width: 120rem;
   margin: 0 auto;
@@ -61,4 +70,3 @@ body {
     font-size: 45.5%;
   }
 }
-

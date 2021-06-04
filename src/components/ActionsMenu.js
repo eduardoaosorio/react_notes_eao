@@ -6,14 +6,18 @@ function ActionsMenu(props) {
   return (
     <div className="actions-menu">
       <div className="create-note">
-        <svg className="create-note__icon">
-          <use href={sprite + "#plus"} />
-        </svg>
+        <button>
+          <svg className="create-note__icon">
+            <use href={sprite + "#plus"} />
+          </svg>
+        </button>
       </div>
       <div className="show-trash">
-        <svg className="show-trash__icon">
-          <use href={sprite + "#empty-trash"} />
-        </svg>
+        <button>
+          <svg className="show-trash__icon">
+            <use href={sprite + "#empty-trash"} />
+          </svg>
+        </button>
       </div>
       <div className="search">
         <input className="search__input" placeholder="search notes"></input>

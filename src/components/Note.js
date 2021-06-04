@@ -6,12 +6,16 @@ function Note(props) {
   return (
     <div className="note">
       <div className="note__actions-box">
-        <svg className="note__icon--edit">
-          <use href={sprite + "#edit"} />
-        </svg>
-        <svg className="note__icon--delete">
-          <use href={sprite + "#delete"} />
-        </svg>
+        <button>
+          <svg className="note__icon--edit">
+            <use href={sprite + "#edit"} />
+          </svg>
+        </button>
+        <button>
+          <svg className="note__icon--delete">
+            <use href={sprite + "#delete"} />
+          </svg>
+        </button>
       </div>
       <h2 className="note__title">Example Title</h2>
       <p className="note__text scroll">{props.text}</p>

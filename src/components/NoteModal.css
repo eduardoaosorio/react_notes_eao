@@ -81,6 +81,7 @@
 }
 
 .note-modal__btn {
+  background-color: var(--color-white);
   font-weight: 600;
   font-size: 1.8rem;
   border-radius: 10px;
