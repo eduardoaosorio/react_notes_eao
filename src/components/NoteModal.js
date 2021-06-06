@@ -50,7 +50,6 @@ export default function NoteModal(props) {
         />
         <button className="note-modal__btn">Save</button>
       </form>
-      ;
     </>,
     document.querySelector("#portal")
   );

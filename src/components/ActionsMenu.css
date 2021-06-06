@@ -7,7 +7,9 @@
 }
 
 .create-note,
-.show-trash {
+.show-trash,
+.go-home,
+.permanently-delete {
   height: 4.6rem;
   width: 4.6rem;
   border-radius: 50%;
@@ -15,19 +17,38 @@
   cursor: pointer;
 }
 
+.permanently-delete {
+  background-color: var(--color-red-dark);
+}
+
 .create-note {
   background-color: var(--color-green);
 }
 
+.go-home {
+  background-color: var(--color-blue-dark);
+}
+
 .create-note__icon,
-.show-trash__icon {
+.show-trash__icon,
+.go-home__icon,
+.permanently-delete__icon {
   fill: var(--color-white);
   position: absolute;
 }
 
-.create-note__icon {
+.create-note__icon,
+.go-home__icon {
   height: 2.3rem;
   width: 2.3rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.permanently-delete__icon {
+  height: 1.9rem;
+  width: 1.9rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -43,7 +64,7 @@
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  stroke: white;
+  stroke: var(--color-white);
   stroke-width: 5;
 }
 
