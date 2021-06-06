@@ -3,7 +3,7 @@ import logo from "../logo.svg";
 
 import ActionsMenu from "./ActionsMenu";
 
-function Header(props) {
+export default function Header(props) {
   return (
     <header>
       <h1>
@@ -14,5 +14,3 @@ function Header(props) {
     </header>
   );
 }
-
-export default Header;

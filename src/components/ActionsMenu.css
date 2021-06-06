@@ -12,6 +12,7 @@
   width: 4.6rem;
   border-radius: 50%;
   position: relative;
+  cursor: pointer;
 }
 
 .create-note {

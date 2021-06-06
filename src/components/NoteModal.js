@@ -1,24 +1,33 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ReactDOM from "react-dom";
+import { Context } from "../Context";
 
 import "./NoteModal.css";
 
 import sprite from "../sprite.svg";
 
-function NoteModal({ open }) {
+export default function NoteModal(props) {
+  const { createNote } = useContext(Context).actions;
+  const { toggleModal } = useContext(Context).actions;
+
   const [noteTitle, setNoteTitle] = useState("");
   const [noteText, setNoteText] = useState("");
 
-  if (!open) return null;
-
-  console.log("noteTitle", noteTitle);
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (noteTitle.trim().length === 0 || noteText.trim().length === 0) return;
+    createNote(noteTitle, noteText);
+    setNoteTitle("");
+    setNoteText("");
+    toggleModal();
+  }
 
   return ReactDOM.createPortal(
     <>
       <div className="overlay"></div>
-      <form className="note-modal">
+      <form className="note-modal" onSubmit={handleSubmit}>
         <div className="note-modal__close">
-          <button type="button">
+          <button type="button" onClick={toggleModal}>
             <svg className="note-modal__close-icon">
               <use href={sprite + "#cancel"} />
             </svg>
@@ -46,5 +55,3 @@ function NoteModal({ open }) {
     document.querySelector("#portal")
   );
 }
-
-export default NoteModal;
