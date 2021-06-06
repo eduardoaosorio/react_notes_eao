@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 
 export const Context = React.createContext();
 
 export default function Provider(props) {
-  const [allNotes, setAllNotes] = useState([]);
-  const [trashNotes, setTrashNotes] = useState([]);
+  const [homeNotes, setHomeNotes] = useState(
+    () => JSON.parse(localStorage.getItem("homeNotes")) || []
+  );
+  const [trashNotes, setTrashNotes] = useState(
+    () => JSON.parse(localStorage.getItem("trashNotes")) || []
+  );
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [inTrash, setInTrash] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("homeNotes", JSON.stringify(homeNotes));
+  }, [homeNotes]);
+
+  useEffect(() => {
+    localStorage.setItem("trashNotes", JSON.stringify(trashNotes));
+  }, [trashNotes]);
 
   function createNote(title, text) {
     const newNote = {
@@ -16,13 +28,13 @@ export default function Provider(props) {
       text,
       creationDate: new Date(),
     };
-    setAllNotes((prevAllNotes) => [...prevAllNotes, newNote]);
+    setHomeNotes((prevHomeNotes) => [...prevHomeNotes, newNote]);
   }
 
   function sendToTrash(id) {
     let newTrashNote = null;
-    setAllNotes((prevAllNotes) =>
-      prevAllNotes.filter((note) => {
+    setHomeNotes((prevHomeNotes) =>
+      prevHomeNotes.filter((note) => {
         if (note.id !== id) return true;
         else {
           newTrashNote = note;
@@ -44,7 +56,7 @@ export default function Provider(props) {
         }
       })
     );
-    setAllNotes((prevAllNotes) => [...prevAllNotes, noteToHome]);
+    setHomeNotes((prevHomeNotes) => [...prevHomeNotes, noteToHome]);
   }
 
   function deleteNote(id) {
@@ -68,7 +80,7 @@ export default function Provider(props) {
   return (
     <Context.Provider
       value={{
-        allNotes,
+        homeNotes,
         trashNotes,
         modalIsOpen,
         inTrash,
