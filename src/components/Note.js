@@ -8,6 +8,7 @@ import sprite from "../sprite.svg";
 export default function Note({ id, title, text, creationDate }) {
   const { sendToTrash } = useContext(Context).actions;
   const { sendToHome } = useContext(Context).actions;
+  const { deleteNote } = useContext(Context).actions;
   const { inTrash } = useContext(Context);
 
   if (!inTrash) {
@@ -48,7 +49,7 @@ export default function Note({ id, title, text, creationDate }) {
               <use href={sprite + "#home"} />
             </svg>
           </button>
-          <button onClick={() => console.log("note permanently deleted")}>
+          <button onClick={() => deleteNote(id)}>
             <svg className="note__icon--permanent-delete">
               <use href={sprite + "#delete"} />
             </svg>

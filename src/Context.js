@@ -47,6 +47,16 @@ export default function Provider(props) {
     setAllNotes((prevAllNotes) => [...prevAllNotes, noteToHome]);
   }
 
+  function deleteNote(id) {
+    setTrashNotes((prevTrashNotes) =>
+      prevTrashNotes.filter((note) => note.id !== id)
+    );
+  }
+
+  function emptyTrash() {
+    setTrashNotes([]);
+  }
+
   function toggleTrash() {
     setInTrash((prevState) => !prevState);
   }
@@ -66,6 +76,8 @@ export default function Provider(props) {
           createNote,
           sendToTrash,
           sendToHome,
+          deleteNote,
+          emptyTrash,
           toggleModal,
           toggleTrash,
         },

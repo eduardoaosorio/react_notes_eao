@@ -7,6 +7,7 @@ import sprite from "../sprite.svg";
 export default function ActionsMenu(props) {
   const { toggleModal } = useContext(Context).actions;
   const { toggleTrash } = useContext(Context).actions;
+  const { emptyTrash } = useContext(Context).actions;
   const { inTrash } = useContext(Context);
   const { trashNotes } = useContext(Context);
 
@@ -45,11 +46,7 @@ export default function ActionsMenu(props) {
             <use href={sprite + "#home"} />
           </svg>
         </div>
-        <div
-          className="permanently-delete"
-          role="button"
-          onClick={() => console.log("permanent delete btn clicked")}
-        >
+        <div className="permanently-delete" role="button" onClick={emptyTrash}>
           <svg className="permanently-delete__icon">
             <use href={sprite + "#cancel"} />
           </svg>
