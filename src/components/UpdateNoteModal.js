@@ -28,7 +28,7 @@ export default function UpdateNoteModal({
 
   return ReactDOM.createPortal(
     <>
-      <div className="edit-overlay"></div>
+      <div className="overlay"></div>
       <form className="note-modal edit-color" onSubmit={handleSubmit}>
         <div className="note-modal__close">
           <button type="button" onClick={toggleUpdateNoteModal}>
