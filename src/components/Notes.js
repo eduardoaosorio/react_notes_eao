@@ -6,33 +6,41 @@ import "./Notes.css";
 import Note from "./Note";
 
 export default function Notes(props) {
-  const { homeNotes } = useContext(Context);
-  const { trashNotes } = useContext(Context);
-  const { inTrash } = useContext(Context);
-  const { searchInputValue } = useContext(Context);
+  const { homeNotes, trashNotes, inTrash, searchInputValue } =
+    useContext(Context);
+
+  function filterNotes(notes) {
+    return notes
+      .filter(
+        ({ title, text }) =>
+          title.toLowerCase().includes(searchInputValue) ||
+          text.toLowerCase().includes(searchInputValue)
+      )
+      .map(({ id, title, text, creationDate, latestUpdateDate }) => (
+        <Note
+          key={id}
+          id={id}
+          title={title}
+          text={text}
+          creationDate={creationDate}
+          latestUpdateDate={latestUpdateDate}
+        />
+      ));
+  }
+
+  const filteredHomeNotes = filterNotes(homeNotes);
+
+  const filteredTrashNotes = filterNotes(trashNotes);
 
   if (!inTrash) {
     return (
       <div className="note-collection">
         {!homeNotes.length ? (
           <div className="no-notes-msg">No notes</div>
+        ) : !filteredHomeNotes.length ? (
+          <div className="no-notes-msg">No matches found</div>
         ) : (
-          homeNotes
-            .filter(
-              ({ title, text }) =>
-                title.toLowerCase().includes(searchInputValue) ||
-                text.toLowerCase().includes(searchInputValue)
-            )
-            .map(({ id, title, text, creationDate, latestUpdateDate }) => (
-              <Note
-                key={id}
-                id={id}
-                title={title}
-                text={text}
-                creationDate={creationDate}
-                latestUpdateDate={latestUpdateDate}
-              />
-            ))
+          filteredHomeNotes
         )}
       </div>
     );
@@ -41,23 +49,10 @@ export default function Notes(props) {
       <div className="note-collection">
         {!trashNotes.length ? (
           <div className="no-notes-msg">Trash is empty</div>
+        ) : !filteredTrashNotes.length ? (
+          <div className="no-notes-msg">No matches found</div>
         ) : (
-          trashNotes
-            .filter(
-              ({ title, text }) =>
-                title.toLowerCase().includes(searchInputValue) ||
-                text.toLowerCase().includes(searchInputValue)
-            )
-            .map(({ id, title, text, creationDate, latestUpdateDate }) => (
-              <Note
-                key={id}
-                id={id}
-                title={title}
-                text={text}
-                creationDate={creationDate}
-                latestUpdateDate={latestUpdateDate}
-              />
-            ))
+          filteredTrashNotes
         )}
       </div>
     );

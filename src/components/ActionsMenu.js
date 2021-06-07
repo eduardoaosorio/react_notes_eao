@@ -7,14 +7,11 @@ import CreateNoteModal from "./CreateNoteModal";
 import sprite from "../sprite.svg";
 
 export default function ActionsMenu(props) {
-  const { toggleCreateNoteModal } = useContext(Context).actions;
-  const { toggleTrash } = useContext(Context).actions;
-  const { emptyTrash } = useContext(Context).actions;
-  const { handleSearch } = useContext(Context).actions;
-  const { createNoteModalIsOpen } = useContext(Context);
-  const { inTrash } = useContext(Context);
-  const { trashNotes } = useContext(Context);
-  const { searchInputValue } = useContext(Context);
+  const { toggleCreateNoteModal, toggleTrash, emptyTrash, handleSearch } =
+    useContext(Context).actions;
+
+  const { createNoteModalIsOpen, inTrash, trashNotes, searchInputValue } =
+    useContext(Context);
 
   if (!inTrash) {
     return (

@@ -14,9 +14,7 @@ export default function Note({
   creationDate,
   latestUpdateDate,
 }) {
-  const { sendToTrash } = useContext(Context).actions;
-  const { sendToHome } = useContext(Context).actions;
-  const { deleteNote } = useContext(Context).actions;
+  const { sendToTrash, sendToHome, deleteNote } = useContext(Context).actions;
   const { inTrash } = useContext(Context);
 
   const [updateNoteModalIsOpen, setUpdateNoteModalIsOpen] = useState(false);
