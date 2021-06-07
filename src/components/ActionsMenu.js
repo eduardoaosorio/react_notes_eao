@@ -86,7 +86,7 @@ export default function ActionsMenu(props) {
             value={searchInputValue}
             onChange={handleSearch}
             className="search__input"
-            placeholder="search notes"
+            placeholder="search notes in trash"
           ></input>
           <svg className="search__icon">
             <use href={sprite + "#loupe"} />
