@@ -2,13 +2,13 @@ import { useState, useContext } from "react";
 import ReactDOM from "react-dom";
 import { Context } from "../Context";
 
-import "./NoteModal.css";
+import "./CreateNoteModal.css";
 
 import sprite from "../sprite.svg";
 
-export default function NoteModal(props) {
+export default function CreateNoteModal(props) {
   const { createNote } = useContext(Context).actions;
-  const { toggleModal } = useContext(Context).actions;
+  const { toggleCreateNoteModal } = useContext(Context).actions;
 
   const [noteTitle, setNoteTitle] = useState("");
   const [noteText, setNoteText] = useState("");
@@ -19,7 +19,7 @@ export default function NoteModal(props) {
     createNote(noteTitle, noteText);
     setNoteTitle("");
     setNoteText("");
-    toggleModal();
+    toggleCreateNoteModal();
   }
 
   return ReactDOM.createPortal(
@@ -27,7 +27,7 @@ export default function NoteModal(props) {
       <div className="overlay"></div>
       <form className="note-modal" onSubmit={handleSubmit}>
         <div className="note-modal__close">
-          <button type="button" onClick={toggleModal}>
+          <button type="button" onClick={toggleCreateNoteModal}>
             <svg className="note-modal__close-icon">
               <use href={sprite + "#cancel"} />
             </svg>
@@ -51,6 +51,6 @@ export default function NoteModal(props) {
         <button className="note-modal__btn">Save</button>
       </form>
     </>,
-    document.querySelector("#portal")
+    document.querySelector("#create-portal")
   );
 }

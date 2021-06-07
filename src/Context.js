@@ -10,7 +10,8 @@ export default function Provider(props) {
   const [trashNotes, setTrashNotes] = useState(
     () => JSON.parse(localStorage.getItem("trashNotes")) || []
   );
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [createNoteModalIsOpen, setCreateNoteModalIsOpen] = useState(false);
+  const [updateNoteModalIsOpen, setUpdateNoteModalIsOpen] = useState(false);
   const [inTrash, setInTrash] = useState(false);
 
   useEffect(() => {
@@ -27,8 +28,26 @@ export default function Provider(props) {
       title,
       text,
       creationDate: new Date(),
+      latestUpdateDate: null,
     };
     setHomeNotes((prevHomeNotes) => [...prevHomeNotes, newNote]);
+  }
+
+  function updateNote(id, title, text) {
+    setHomeNotes((prevHomeNotes) =>
+      prevHomeNotes.map((note) => {
+        if (note.id !== id) return note;
+        else {
+          return {
+            id,
+            title,
+            text,
+            creationDate: note.creationDate,
+            latestUpdateDate: new Date(),
+          };
+        }
+      })
+    );
   }
 
   function sendToTrash(id) {
@@ -73,8 +92,12 @@ export default function Provider(props) {
     setInTrash((prevState) => !prevState);
   }
 
-  function toggleModal() {
-    setModalIsOpen((prevState) => !prevState);
+  function toggleCreateNoteModal() {
+    setCreateNoteModalIsOpen((prevState) => !prevState);
+  }
+
+  function toggleUpdateNoteModal() {
+    setUpdateNoteModalIsOpen((prevState) => !prevState);
   }
 
   return (
@@ -82,15 +105,18 @@ export default function Provider(props) {
       value={{
         homeNotes,
         trashNotes,
-        modalIsOpen,
+        createNoteModalIsOpen,
+        updateNoteModalIsOpen,
         inTrash,
         actions: {
           createNote,
+          updateNote,
           sendToTrash,
           sendToHome,
           deleteNote,
           emptyTrash,
-          toggleModal,
+          toggleCreateNoteModal,
+          toggleUpdateNoteModal,
           toggleTrash,
         },
       }}

@@ -23,12 +23,6 @@
   width: 1.8rem;
 }
 
-.note__icon-home {
-  height: 1.4rem;
-  width: 1.4rem;
-  fill: var(--color-orange);
-}
-
 .note__icon--trash {
   height: 2.7rem;
   width: 2.7rem;
@@ -37,6 +31,7 @@
   padding-bottom: 0.3rem;
 }
 
+.note__icon--home,
 .note__icon--permanent-delete {
   height: 1.9rem;
   width: 1.9rem;
@@ -62,20 +57,6 @@
   text-align: right;
   padding-top: 0.5rem;
   margin-top: auto;
-}
-
-.note__move-home-btn {
-  background-color: var(--color-black);
-  border-radius: 5px;
-  padding: 0.2rem 0.5rem;
-}
-
-.note__move-home-btn > span {
-  padding-top: 0.2rem;
-  color: var(--color-orange);
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-right: 0.3rem;
 }
 
 /* scroll styles adapted from Kamlesh Kushwaha's Jsfiddle:

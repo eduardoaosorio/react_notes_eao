@@ -1,0 +1,7 @@
+/* to class selectors to guarante higher specificity */
+
+.note-modal.edit-color,
+.note-modal__title.edit-color,
+.note-modal__text.edit-color {
+  background-color: var(--color-purple);
+}
