@@ -12,6 +12,7 @@ export default function Provider(props) {
   );
   const [createNoteModalIsOpen, setCreateNoteModalIsOpen] = useState(false);
   const [inTrash, setInTrash] = useState(false);
+  const [searchInputValue, setSearchInputValue] = useState("");
 
   useEffect(() => {
     localStorage.setItem("homeNotes", JSON.stringify(homeNotes));
@@ -95,13 +96,17 @@ export default function Provider(props) {
     setCreateNoteModalIsOpen((prevState) => !prevState);
   }
 
+  function handleSearch(event) {
+    setSearchInputValue(event.target.value);
+  }
+
   return (
     <Context.Provider
       value={{
         homeNotes,
         trashNotes,
         createNoteModalIsOpen,
-
+        searchInputValue,
         inTrash,
         actions: {
           createNote,
@@ -112,6 +117,7 @@ export default function Provider(props) {
           emptyTrash,
           toggleCreateNoteModal,
           toggleTrash,
+          handleSearch,
         },
       }}
     >

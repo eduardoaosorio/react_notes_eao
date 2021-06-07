@@ -9,6 +9,7 @@ export default function Notes(props) {
   const { homeNotes } = useContext(Context);
   const { trashNotes } = useContext(Context);
   const { inTrash } = useContext(Context);
+  const { searchInputValue } = useContext(Context);
 
   if (!inTrash) {
     return (
@@ -16,8 +17,13 @@ export default function Notes(props) {
         {!homeNotes.length ? (
           <div className="no-notes-msg">No notes</div>
         ) : (
-          homeNotes.map(
-            ({ id, title, text, creationDate, latestUpdateDate }) => (
+          homeNotes
+            .filter(
+              ({ title, text }) =>
+                title.toLowerCase().includes(searchInputValue) ||
+                text.toLowerCase().includes(searchInputValue)
+            )
+            .map(({ id, title, text, creationDate, latestUpdateDate }) => (
               <Note
                 key={id}
                 id={id}
@@ -26,8 +32,7 @@ export default function Notes(props) {
                 creationDate={creationDate}
                 latestUpdateDate={latestUpdateDate}
               />
-            )
-          )
+            ))
         )}
       </div>
     );
@@ -37,8 +42,13 @@ export default function Notes(props) {
         {!trashNotes.length ? (
           <div className="no-notes-msg">Trash is empty</div>
         ) : (
-          trashNotes.map(
-            ({ id, title, text, creationDate, latestUpdateDate }) => (
+          trashNotes
+            .filter(
+              ({ title, text }) =>
+                title.toLowerCase().includes(searchInputValue) ||
+                text.toLowerCase().includes(searchInputValue)
+            )
+            .map(({ id, title, text, creationDate, latestUpdateDate }) => (
               <Note
                 key={id}
                 id={id}
@@ -47,8 +57,7 @@ export default function Notes(props) {
                 creationDate={creationDate}
                 latestUpdateDate={latestUpdateDate}
               />
-            )
-          )
+            ))
         )}
       </div>
     );

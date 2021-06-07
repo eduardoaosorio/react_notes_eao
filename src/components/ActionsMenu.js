@@ -10,9 +10,11 @@ export default function ActionsMenu(props) {
   const { toggleCreateNoteModal } = useContext(Context).actions;
   const { toggleTrash } = useContext(Context).actions;
   const { emptyTrash } = useContext(Context).actions;
+  const { handleSearch } = useContext(Context).actions;
   const { createNoteModalIsOpen } = useContext(Context);
   const { inTrash } = useContext(Context);
   const { trashNotes } = useContext(Context);
+  const { searchInputValue } = useContext(Context);
 
   if (!inTrash) {
     return (
@@ -45,7 +47,12 @@ export default function ActionsMenu(props) {
             )}
           </div>
           <div className="search">
-            <input className="search__input" placeholder="search notes"></input>
+            <input
+              value={searchInputValue}
+              onChange={handleSearch}
+              className="search__input"
+              placeholder="search notes"
+            ></input>
             <svg className="search__icon">
               <use href={sprite + "#loupe"} />
             </svg>
@@ -78,7 +85,12 @@ export default function ActionsMenu(props) {
           </svg>
         </div>
         <div className="search">
-          <input className="search__input" placeholder="search notes"></input>
+          <input
+            value={searchInputValue}
+            onChange={handleSearch}
+            className="search__input"
+            placeholder="search notes"
+          ></input>
           <svg className="search__icon">
             <use href={sprite + "#loupe"} />
           </svg>
