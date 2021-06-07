@@ -59,26 +59,20 @@ export default function ActionsMenu(props) {
   } else {
     return (
       <div className="actions-menu">
-        <div
-          title="Go to home"
-          className="go-home"
-          role="button"
-          onClick={toggleTrash}
-        >
+        <button title="Go to home" className="go-home" onClick={toggleTrash}>
           <svg className="go-home__icon">
             <use href={sprite + "#home"} />
           </svg>
-        </div>
-        <div
+        </button>
+        <button
           title="Delete all notes in trash"
           className="permanently-delete"
-          role="button"
           onClick={emptyTrash}
         >
           <svg className="permanently-delete__icon">
             <use href={sprite + "#cancel"} />
           </svg>
-        </div>
+        </button>
         <div className="search">
           <input
             value={searchInputValue}
