@@ -19,6 +19,7 @@ export default function ActionsMenu(props) {
       <>
         <div className="actions-menu">
           <div
+            title="Create note"
             className="create-note"
             role="button"
             onClick={toggleCreateNoteModal}
@@ -27,7 +28,12 @@ export default function ActionsMenu(props) {
               <use href={sprite + "#plus"} />
             </svg>
           </div>
-          <div className="show-trash" role="button" onClick={toggleTrash}>
+          <div
+            title="Go to trash"
+            className="show-trash"
+            role="button"
+            onClick={toggleTrash}
+          >
             {trashNotes.length === 0 ? (
               <svg className="show-trash__icon">
                 <use href={sprite + "#empty-trash"} />
@@ -51,12 +57,22 @@ export default function ActionsMenu(props) {
   } else {
     return (
       <div className="actions-menu">
-        <div className="go-home" role="button" onClick={toggleTrash}>
+        <div
+          title="Go to home"
+          className="go-home"
+          role="button"
+          onClick={toggleTrash}
+        >
           <svg className="go-home__icon">
             <use href={sprite + "#home"} />
           </svg>
         </div>
-        <div className="permanently-delete" role="button" onClick={emptyTrash}>
+        <div
+          title="Delete all notes in trash"
+          className="permanently-delete"
+          role="button"
+          onClick={emptyTrash}
+        >
           <svg className="permanently-delete__icon">
             <use href={sprite + "#cancel"} />
           </svg>

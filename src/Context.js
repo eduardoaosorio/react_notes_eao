@@ -11,7 +11,6 @@ export default function Provider(props) {
     () => JSON.parse(localStorage.getItem("trashNotes")) || []
   );
   const [createNoteModalIsOpen, setCreateNoteModalIsOpen] = useState(false);
-  const [updateNoteModalIsOpen, setUpdateNoteModalIsOpen] = useState(false);
   const [inTrash, setInTrash] = useState(false);
 
   useEffect(() => {
@@ -96,17 +95,13 @@ export default function Provider(props) {
     setCreateNoteModalIsOpen((prevState) => !prevState);
   }
 
-  function toggleUpdateNoteModal() {
-    setUpdateNoteModalIsOpen((prevState) => !prevState);
-  }
-
   return (
     <Context.Provider
       value={{
         homeNotes,
         trashNotes,
         createNoteModalIsOpen,
-        updateNoteModalIsOpen,
+
         inTrash,
         actions: {
           createNote,
@@ -116,7 +111,6 @@ export default function Provider(props) {
           deleteNote,
           emptyTrash,
           toggleCreateNoteModal,
-          toggleUpdateNoteModal,
           toggleTrash,
         },
       }}

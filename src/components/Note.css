@@ -50,6 +50,7 @@
   font-size: 1.4rem;
   line-height: 2rem;
   max-height: 28rem;
+  white-space: pre-wrap;
 }
 
 .note__timestamp {

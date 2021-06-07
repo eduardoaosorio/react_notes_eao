@@ -6,9 +6,13 @@ import "./UpdateNoteModal.css";
 
 import sprite from "../sprite.svg";
 
-export default function UpdateNoteModal({ id, title, text }) {
+export default function UpdateNoteModal({
+  id,
+  title,
+  text,
+  toggleUpdateNoteModal,
+}) {
   const { updateNote } = useContext(Context).actions;
-  const { toggleUpdateNoteModal } = useContext(Context).actions;
 
   const [noteTitle, setNoteTitle] = useState(title);
   const [noteText, setNoteText] = useState(text);

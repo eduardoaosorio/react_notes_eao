@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { Context } from "../Context";
 
 import UpdateNoteModal from "./UpdateNoteModal";
@@ -17,21 +17,25 @@ export default function Note({
   const { sendToTrash } = useContext(Context).actions;
   const { sendToHome } = useContext(Context).actions;
   const { deleteNote } = useContext(Context).actions;
-  const { toggleUpdateNoteModal } = useContext(Context).actions;
   const { inTrash } = useContext(Context);
-  const { updateNoteModalIsOpen } = useContext(Context);
+
+  const [updateNoteModalIsOpen, setUpdateNoteModalIsOpen] = useState(false);
+
+  function toggleUpdateNoteModal() {
+    setUpdateNoteModalIsOpen((prevState) => !prevState);
+  }
 
   if (!inTrash) {
     return (
       <>
         <div className="note">
           <div className="note__actions-box">
-            <button onClick={toggleUpdateNoteModal}>
+            <button title="Edit note" onClick={toggleUpdateNoteModal}>
               <svg className="note__icon--edit">
                 <use href={sprite + "#edit"} />
               </svg>
             </button>
-            <button onClick={() => sendToTrash(id)}>
+            <button title="Send to trash" onClick={() => sendToTrash(id)}>
               <svg className="note__icon--trash">
                 <use href={sprite + "#empty-trash"} />
               </svg>
@@ -50,7 +54,12 @@ export default function Note({
           )}
         </div>
         {!updateNoteModalIsOpen ? null : (
-          <UpdateNoteModal id={id} title={title} text={text} />
+          <UpdateNoteModal
+            id={id}
+            title={title}
+            text={text}
+            toggleUpdateNoteModal={toggleUpdateNoteModal}
+          />
         )}
       </>
     );
@@ -58,12 +67,12 @@ export default function Note({
     return (
       <div className="note in-trash-color">
         <div className="note__actions-box">
-          <button onClick={() => sendToHome(id)}>
+          <button title="Send to home" onClick={() => sendToHome(id)}>
             <svg className="note__icon--home">
               <use href={sprite + "#home"} />
             </svg>
           </button>
-          <button onClick={() => deleteNote(id)}>
+          <button title="Delete note" onClick={() => deleteNote(id)}>
             <svg className="note__icon--permanent-delete">
               <use href={sprite + "#delete"} />
             </svg>
