@@ -17,20 +17,18 @@ export default function ActionsMenu(props) {
     return (
       <>
         <div className="actions-menu">
-          <div
+          <button
             title="Create note"
             className="create-note"
-            role="button"
             onClick={toggleCreateNoteModal}
           >
             <svg className="create-note__icon">
               <use href={sprite + "#plus"} />
             </svg>
-          </div>
-          <div
+          </button>
+          <button
             title="Go to trash"
             className="show-trash"
-            role="button"
             onClick={toggleTrash}
           >
             {trashNotes.length === 0 ? (
@@ -42,7 +40,7 @@ export default function ActionsMenu(props) {
                 <use href={sprite + "#trash"} />
               </svg>
             )}
-          </div>
+          </button>
           <div className="search">
             <input
               value={searchInputValue}

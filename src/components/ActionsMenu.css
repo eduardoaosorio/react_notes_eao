@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.actions-menu > div:not(:last-child) {
+.actions-menu > *:not(:last-child) {
   margin-right: 2.5rem;
 }
 
@@ -106,7 +106,7 @@
 }
 
 @media screen and (max-width: 626px) {
-  .actions-menu > div:not(:last-child) {
+  .actions-menu > *:not(:last-child) {
     margin-right: 0.5rem;
   }
 
