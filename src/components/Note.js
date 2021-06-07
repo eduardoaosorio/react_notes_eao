@@ -7,7 +7,13 @@ import "./Note.css";
 
 import sprite from "../sprite.svg";
 
-export default function Note({ id, title, text, creationDate }) {
+export default function Note({
+  id,
+  title,
+  text,
+  creationDate,
+  latestUpdateDate,
+}) {
   const { sendToTrash } = useContext(Context).actions;
   const { sendToHome } = useContext(Context).actions;
   const { deleteNote } = useContext(Context).actions;
@@ -33,7 +39,15 @@ export default function Note({ id, title, text, creationDate }) {
           </div>
           <h2 className="note__title">{title}</h2>
           <p className="note__text scroll">{text}</p>
-          <p className="note__timestamp">{`Created: ${creationDate.toLocaleString()}`}</p>
+          {latestUpdateDate ? (
+            <p className="note__timestamp">
+              Last updated: {latestUpdateDate.toLocaleString()}
+            </p>
+          ) : (
+            <p className="note__timestamp">
+              Created: {creationDate.toLocaleString()}
+            </p>
+          )}
         </div>
         {!updateNoteModalIsOpen ? null : (
           <UpdateNoteModal id={id} title={title} text={text} />
@@ -57,7 +71,15 @@ export default function Note({ id, title, text, creationDate }) {
         </div>
         <h2 className="note__title">{title}</h2>
         <p className="note__text scroll">{text}</p>
-        <p className="note__timestamp">{`Created: ${creationDate.toLocaleString()}`}</p>
+        {latestUpdateDate ? (
+          <p className="note__timestamp">
+            Last updated: {latestUpdateDate.toLocaleString()}
+          </p>
+        ) : (
+          <p className="note__timestamp">
+            Created: {creationDate.toLocaleString()}
+          </p>
+        )}
       </div>
     );
   }

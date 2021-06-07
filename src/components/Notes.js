@@ -16,15 +16,18 @@ export default function Notes(props) {
         {!homeNotes.length ? (
           <div className="no-notes-msg">No notes</div>
         ) : (
-          homeNotes.map(({ id, title, text, creationDate }) => (
-            <Note
-              key={id}
-              id={id}
-              title={title}
-              text={text}
-              creationDate={creationDate}
-            />
-          ))
+          homeNotes.map(
+            ({ id, title, text, creationDate, latestUpdateDate }) => (
+              <Note
+                key={id}
+                id={id}
+                title={title}
+                text={text}
+                creationDate={creationDate}
+                latestUpdateDate={latestUpdateDate}
+              />
+            )
+          )
         )}
       </div>
     );
@@ -34,15 +37,18 @@ export default function Notes(props) {
         {!trashNotes.length ? (
           <div className="no-notes-msg">Trash is empty</div>
         ) : (
-          trashNotes.map(({ id, title, text, creationDate }) => (
-            <Note
-              key={id}
-              id={id}
-              title={title}
-              text={text}
-              creationDate={creationDate}
-            />
-          ))
+          trashNotes.map(
+            ({ id, title, text, creationDate, latestUpdateDate }) => (
+              <Note
+                key={id}
+                id={id}
+                title={title}
+                text={text}
+                creationDate={creationDate}
+                latestUpdateDate={latestUpdateDate}
+              />
+            )
+          )
         )}
       </div>
     );
