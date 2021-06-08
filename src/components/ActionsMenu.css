@@ -21,6 +21,11 @@
   background-color: var(--color-red-dark);
 }
 
+.permanently-delete:disabled {
+  background-color: var(--color-red-disabled);
+  cursor: not-allowed;
+}
+
 .create-note {
   background-color: var(--color-green);
 }

@@ -68,6 +68,7 @@ export default function ActionsMenu(props) {
           title="Delete all notes in trash"
           className="permanently-delete"
           onClick={emptyTrash}
+          disabled={!trashNotes.length}
         >
           <svg className="permanently-delete__icon">
             <use href={sprite + "#cancel"} />
