@@ -29,8 +29,8 @@ export default function EmptyTrashWarningModal({
         </div>
         <h2 className="note-modal__heading">Warning!</h2>
         <p>
-          You are about to empty the trash. This action will delete all notes in
-          it forever, there is no way to get these notes back.
+          You are about to empty the trash bin. This action will delete all
+          notes in it forever, there is no way to get these notes back.
         </p>
         <button onClick={handleConfirm} className="note-modal__btn">
           Permanently delete all notes

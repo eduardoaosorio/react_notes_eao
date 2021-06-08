@@ -18,11 +18,11 @@
 }
 
 .permanently-delete {
-  background-color: var(--color-red-dark);
+  background-color: var(--color-dark-red);
 }
 
 .permanently-delete:disabled {
-  background-color: var(--color-red-disabled);
+  background-color: var(--color-disabled-red);
   cursor: not-allowed;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .go-home {
-  background-color: var(--color-blue-dark);
+  background-color: var(--color-dark-blue);
 }
 
 .create-note__icon,
@@ -76,6 +76,7 @@
 .search,
 .search__input {
   background-color: var(--color-light-grey-1);
+  border-radius: 20px;
   transition: all 0.5s;
 }
 
@@ -95,7 +96,7 @@
 
 .search__input::-webkit-input-placeholder {
   font-weight: 100;
-  color: var(--color-dark-grey-1);
+  color: var(--color-dark-grey);
 }
 
 .search:focus-within,
@@ -107,7 +108,7 @@
 .search__icon {
   height: 2rem;
   width: 2rem;
-  fill: var(--color-dark-grey-1);
+  fill: var(--color-dark-grey);
 }
 
 @media screen and (max-width: 626px) {
