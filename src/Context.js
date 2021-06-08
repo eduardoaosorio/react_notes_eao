@@ -10,7 +10,6 @@ export default function Provider(props) {
   const [trashNotes, setTrashNotes] = useState(
     () => JSON.parse(localStorage.getItem("trashNotes")) || []
   );
-  const [createNoteModalIsOpen, setCreateNoteModalIsOpen] = useState(false);
   const [inTrash, setInTrash] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
 
@@ -92,10 +91,6 @@ export default function Provider(props) {
     setInTrash((prevState) => !prevState);
   }
 
-  function toggleCreateNoteModal() {
-    setCreateNoteModalIsOpen((prevState) => !prevState);
-  }
-
   function handleSearch(event) {
     setSearchInputValue(event.target.value);
   }
@@ -105,7 +100,6 @@ export default function Provider(props) {
       value={{
         homeNotes,
         trashNotes,
-        createNoteModalIsOpen,
         searchInputValue,
         inTrash,
         actions: {
@@ -115,7 +109,6 @@ export default function Provider(props) {
           sendToHome,
           deleteNote,
           emptyTrash,
-          toggleCreateNoteModal,
           toggleTrash,
           handleSearch,
         },

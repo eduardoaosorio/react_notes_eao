@@ -6,8 +6,8 @@ import "./CreateNoteModal.css";
 
 import sprite from "../sprite.svg";
 
-export default function CreateNoteModal(props) {
-  const { createNote, toggleCreateNoteModal } = useContext(Context).actions;
+export default function CreateNoteModal({ toggleCreateNoteModal }) {
+  const { createNote } = useContext(Context).actions;
 
   const [noteTitle, setNoteTitle] = useState("");
   const [noteText, setNoteText] = useState("");

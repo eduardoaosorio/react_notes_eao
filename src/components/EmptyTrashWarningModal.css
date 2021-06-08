@@ -1,0 +1,10 @@
+.note-modal.warning {
+  background-color: var(--color-red-dark);
+  height: 25rem;
+  top: 40%;
+}
+
+.note-modal.warning p {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
