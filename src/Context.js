@@ -61,7 +61,7 @@ export default function Provider(props) {
         }
       })
     );
-    setTrashNotes((prevTrashNotes) => [...prevTrashNotes, newTrashNote]);
+    setTrashNotes((prevTrashNotes) => [newTrashNote, ...prevTrashNotes]);
   }
 
   function sendToHome(id) {
@@ -75,7 +75,7 @@ export default function Provider(props) {
         }
       })
     );
-    setHomeNotes((prevHomeNotes) => [...prevHomeNotes, noteToHome]);
+    setHomeNotes((prevHomeNotes) => [noteToHome, ...prevHomeNotes]);
   }
 
   function deleteNote(id) {
