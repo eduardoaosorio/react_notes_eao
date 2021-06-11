@@ -1,3 +1,5 @@
+/* two class selectors to guarantee a higher specificity */
+
 .note-modal.warning {
   background-color: var(--color-dark-red);
   height: 25rem;

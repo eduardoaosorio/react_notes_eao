@@ -9,7 +9,6 @@ import sprite from "../sprite.svg";
 
 export default function ActionsMenu(props) {
   const { toggleTrash, handleSearch } = useContext(Context).actions;
-
   const { inTrash, trashNotes, searchInputValue } = useContext(Context);
 
   const [createNoteModalIsOpen, setCreateNoteModalIsOpen] = useState(false);

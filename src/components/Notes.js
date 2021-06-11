@@ -29,7 +29,6 @@ export default function Notes(props) {
   }
 
   const filteredHomeNotes = filterNotes(homeNotes);
-
   const filteredTrashNotes = filterNotes(trashNotes);
 
   if (!inTrash) {

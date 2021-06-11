@@ -17,15 +17,6 @@
   cursor: pointer;
 }
 
-.permanently-delete {
-  background-color: var(--color-dark-red);
-}
-
-.permanently-delete:disabled {
-  background-color: var(--color-disabled-red);
-  cursor: not-allowed;
-}
-
 .create-note {
   background-color: var(--color-green);
 }
@@ -51,14 +42,6 @@
   transform: translate(-50%, -50%);
 }
 
-.permanently-delete__icon {
-  height: 1.9rem;
-  width: 1.9rem;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .show-trash {
   background-color: var(--color-red);
 }
@@ -71,6 +54,23 @@
   transform: translate(-50%, -50%);
   stroke: var(--color-white);
   stroke-width: 5;
+}
+
+.permanently-delete {
+  background-color: var(--color-dark-red);
+}
+
+.permanently-delete:disabled {
+  background-color: var(--color-disabled-red);
+  cursor: not-allowed;
+}
+
+.permanently-delete__icon {
+  height: 1.9rem;
+  width: 1.9rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .search,

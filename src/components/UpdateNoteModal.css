@@ -1,4 +1,4 @@
-/* to class selectors to guarante higher specificity */
+/* two class selectors to guarantee a higher specificity */
 
 .note-modal.edit-color,
 .note-modal__title.edit-color,
