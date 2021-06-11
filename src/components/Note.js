@@ -42,13 +42,9 @@ export default function Note({
           <h2 className="note__title">{title}</h2>
           <p className="note__text scroll">{text}</p>
           {latestUpdateDate ? (
-            <p className="note__timestamp">
-              Last updated: {latestUpdateDate.toLocaleString()}
-            </p>
+            <p className="note__timestamp">Last updated: {latestUpdateDate}</p>
           ) : (
-            <p className="note__timestamp">
-              Created: {creationDate.toLocaleString()}
-            </p>
+            <p className="note__timestamp">Created: {creationDate}</p>
           )}
         </div>
         {!updateNoteModalIsOpen ? null : (
@@ -79,13 +75,9 @@ export default function Note({
         <h2 className="note__title">{title}</h2>
         <p className="note__text scroll">{text}</p>
         {latestUpdateDate ? (
-          <p className="note__timestamp">
-            Last updated: {latestUpdateDate.toLocaleString()}
-          </p>
+          <p className="note__timestamp">Last updated: {latestUpdateDate}</p>
         ) : (
-          <p className="note__timestamp">
-            Created: {creationDate.toLocaleString()}
-          </p>
+          <p className="note__timestamp">Created: {creationDate}</p>
         )}
       </div>
     );

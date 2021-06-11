@@ -26,7 +26,7 @@ export default function Provider(props) {
       id: nanoid(),
       title,
       text,
-      creationDate: new Date(),
+      creationDate: new Date().toLocaleString(),
       latestUpdateDate: null,
     };
     setHomeNotes((prevHomeNotes) => [...prevHomeNotes, newNote]);
@@ -42,7 +42,7 @@ export default function Provider(props) {
             title,
             text,
             creationDate: note.creationDate,
-            latestUpdateDate: new Date(),
+            latestUpdateDate: new Date().toLocaleString(),
           };
         }
       })
