@@ -37,6 +37,6 @@ export default function EmptyTrashWarningModal({
         </button>
       </div>
     </>,
-    document.querySelector("#create-portal")
+    document.querySelector("#warning-portal")
   );
 }
