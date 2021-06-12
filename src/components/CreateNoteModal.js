@@ -11,14 +11,62 @@ export default function CreateNoteModal({ toggleCreateNoteModal }) {
 
   const [noteTitle, setNoteTitle] = useState("");
   const [noteText, setNoteText] = useState("");
+  const [errors, setErrors] = useState({});
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (noteTitle.trim().length === 0 || noteText.trim().length === 0) return;
+    if (!validatePreSubmit()) return;
     createNote(noteTitle, noteText);
     setNoteTitle("");
     setNoteText("");
     toggleCreateNoteModal();
+  }
+
+  function validatePreSubmit() {
+    let errors = {};
+    let formIsValid = true;
+
+    if (noteTitle.trim().length === 0) {
+      formIsValid = false;
+      errors["noteTitle"] = "Note title can't be empty!";
+    }
+
+    if (noteText.trim().length === 0) {
+      formIsValid = false;
+      errors["noteText"] = "Note body can't be empty!";
+    }
+
+    setErrors(errors);
+    return formIsValid;
+  }
+
+  function validateAndHandleChange(e) {
+    if (e.target.className.includes("note-modal__title")) {
+      if (e.target.value.trim().length > 50) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          noteTitle: "Note title can't be longer than 50 characters!",
+        }));
+        return;
+      }
+      if (e.target.value.trim().length > 0) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          noteTitle: null,
+        }));
+      }
+      setNoteTitle(e.target.value);
+    }
+
+    if (e.target.className.includes("note-modal__text")) {
+      if (e.target.value.trim().length > 0) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          noteText: null,
+        }));
+      }
+      setNoteText(e.target.value);
+    }
   }
 
   return ReactDOM.createPortal(
@@ -38,15 +86,21 @@ export default function CreateNoteModal({ toggleCreateNoteModal }) {
           className="note-modal__title"
           type="text"
           value={noteTitle}
-          onChange={(e) => setNoteTitle(e.target.value)}
+          onChange={validateAndHandleChange}
         />
+        {errors.noteTitle ? (
+          <div className="note-modal__error-msg">{errors.noteTitle}</div>
+        ) : null}
         <textarea
           placeholder="Add note contents"
           className="note-modal__text scroll"
           type="text"
           value={noteText}
-          onChange={(e) => setNoteText(e.target.value)}
+          onChange={validateAndHandleChange}
         />
+        {errors.noteText ? (
+          <div className="note-modal__error-msg">{errors.noteText}</div>
+        ) : null}
         <button className="note-modal__btn">Save</button>
       </form>
     </>,
