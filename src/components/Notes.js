@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { Context } from "../Context";
+import React, { useContext } from 'react';
+import { Context } from '../Context';
 
-import "./Notes.css";
+import './Notes.css';
 
-import Note from "./Note";
+import Note from './Note';
 
-export default function Notes(props) {
+export default function Notes() {
   const { homeNotes, trashNotes, inTrash, searchInputValue } =
     useContext(Context);
 
@@ -34,26 +34,27 @@ export default function Notes(props) {
   if (!inTrash) {
     return (
       <div className="note-collection">
-        {!homeNotes.length ? (
-          <div className="no-notes-msg">No notes</div>
-        ) : !filteredHomeNotes.length ? (
-          <div className="no-notes-msg">No matches found</div>
-        ) : (
-          filteredHomeNotes
-        )}
-      </div>
-    );
-  } else {
-    return (
-      <div className="note-collection">
-        {!trashNotes.length ? (
-          <div className="no-notes-msg">Trash is empty</div>
-        ) : !filteredTrashNotes.length ? (
-          <div className="no-notes-msg">No matches found</div>
-        ) : (
-          filteredTrashNotes
-        )}
+        {(() => {
+          if (!homeNotes.length)
+            return <div className="no-notes-msg">No notes</div>;
+          if (!filteredHomeNotes.length) {
+            return <div className="no-notes-msg">No matches found</div>;
+          }
+          return filteredHomeNotes;
+        })()}
       </div>
     );
   }
+  return (
+    <div className="note-collection">
+      {(() => {
+        if (!trashNotes.length)
+          return <div className="no-notes-msg">Trash is empty</div>;
+        if (!filteredTrashNotes.length) {
+          return <div className="no-notes-msg">No matches found</div>;
+        }
+        return filteredTrashNotes;
+      })()}
+    </div>
+  );
 }

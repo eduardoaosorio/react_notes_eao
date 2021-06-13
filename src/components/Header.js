@@ -1,9 +1,10 @@
-import "./Header.css";
-import logo from "../logo.svg";
+import React from 'react';
+import './Header.css';
+import logo from '../logo.svg';
 
-import ActionsMenu from "./ActionsMenu";
+import ActionsMenu from './ActionsMenu';
 
-export default function Header(props) {
+export default function Header() {
   return (
     <header>
       <h1>

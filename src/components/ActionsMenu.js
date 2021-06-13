@@ -1,13 +1,13 @@
-import { useState, useContext } from "react";
-import "./ActionsMenu.css";
-import { Context } from "../Context";
+import React, { useState, useContext } from 'react';
+import './ActionsMenu.css';
+import { Context } from '../Context';
 
-import CreateNoteModal from "./CreateNoteModal";
-import EmptyTrashWarningModal from "./EmptyTrashWarningModal";
+import CreateNoteModal from './CreateNoteModal';
+import EmptyTrashWarningModal from './EmptyTrashWarningModal';
 
-import sprite from "../sprite.svg";
+import sprite from '../sprite.svg';
 
-export default function ActionsMenu(props) {
+export default function ActionsMenu() {
   const { toggleTrash, handleSearch } = useContext(Context).actions;
   const { inTrash, trashNotes, searchInputValue } = useContext(Context);
 
@@ -31,23 +31,25 @@ export default function ActionsMenu(props) {
             title="Create note"
             className="create-note"
             onClick={toggleCreateNoteModal}
+            type="button"
           >
             <svg className="create-note__icon">
-              <use href={sprite + "#plus"} />
+              <use href={`${sprite}#plus`} />
             </svg>
           </button>
           <button
             title="Go to trash"
             className="show-trash"
             onClick={toggleTrash}
+            type="button"
           >
             {trashNotes.length === 0 ? (
               <svg className="show-trash__icon">
-                <use href={sprite + "#empty-trash"} />
+                <use href={`${sprite}#empty-trash`} />
               </svg>
             ) : (
               <svg className="show-trash__icon">
-                <use href={sprite + "#trash"} />
+                <use href={`${sprite}#trash`} />
               </svg>
             )}
           </button>
@@ -57,9 +59,9 @@ export default function ActionsMenu(props) {
               onChange={handleSearch}
               className="search__input"
               placeholder="search notes"
-            ></input>
+            />
             <svg className="search__icon">
-              <use href={sprite + "#loupe"} />
+              <use href={`${sprite}#loupe`} />
             </svg>
           </div>
         </div>
@@ -68,43 +70,48 @@ export default function ActionsMenu(props) {
         ) : null}
       </>
     );
-  } else {
-    return (
-      <>
-        <div className="actions-menu">
-          <button title="Go to home" className="go-home" onClick={toggleTrash}>
-            <svg className="go-home__icon">
-              <use href={sprite + "#home"} />
-            </svg>
-          </button>
-          <button
-            title="Delete all notes in trash"
-            className="permanently-delete"
-            onClick={toggleEmptyTrashWarningModal}
-            disabled={!trashNotes.length}
-          >
-            <svg className="permanently-delete__icon">
-              <use href={sprite + "#cancel"} />
-            </svg>
-          </button>
-          <div className="search">
-            <input
-              value={searchInputValue}
-              onChange={handleSearch}
-              className="search__input"
-              placeholder="search notes in trash"
-            ></input>
-            <svg className="search__icon">
-              <use href={sprite + "#loupe"} />
-            </svg>
-          </div>
-        </div>
-        {emptyTrashWarningModalIsOpen ? (
-          <EmptyTrashWarningModal
-            toggleEmptyTrashWarningModal={toggleEmptyTrashWarningModal}
-          />
-        ) : null}
-      </>
-    );
   }
+  return (
+    <>
+      <div className="actions-menu">
+        <button
+          title="Go to home"
+          className="go-home"
+          onClick={toggleTrash}
+          type="button"
+        >
+          <svg className="go-home__icon">
+            <use href={`${sprite}#home`} />
+          </svg>
+        </button>
+        <button
+          title="Delete all notes in trash"
+          className="permanently-delete"
+          onClick={toggleEmptyTrashWarningModal}
+          disabled={!trashNotes.length}
+          type="button"
+        >
+          <svg className="permanently-delete__icon">
+            <use href={`${sprite}#cancel`} />
+          </svg>
+        </button>
+        <div className="search">
+          <input
+            value={searchInputValue}
+            onChange={handleSearch}
+            className="search__input"
+            placeholder="search notes in trash"
+          />
+          <svg className="search__icon">
+            <use href={`${sprite}#loupe`} />
+          </svg>
+        </div>
+      </div>
+      {emptyTrashWarningModalIsOpen ? (
+        <EmptyTrashWarningModal
+          toggleEmptyTrashWarningModal={toggleEmptyTrashWarningModal}
+        />
+      ) : null}
+    </>
+  );
 }

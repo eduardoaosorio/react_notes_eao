@@ -1,47 +1,38 @@
-import { useState, useContext } from "react";
-import ReactDOM from "react-dom";
-import { Context } from "../Context";
+import React, { useState, useContext } from 'react';
+import ReactDOM from 'react-dom';
+import { Context } from '../Context';
 
-import "./CreateNoteModal.css";
+import './CreateNoteModal.css';
 
-import sprite from "../sprite.svg";
+import sprite from '../sprite.svg';
 
 export default function CreateNoteModal({ toggleCreateNoteModal }) {
   const { createNote } = useContext(Context).actions;
 
-  const [noteTitle, setNoteTitle] = useState("");
-  const [noteText, setNoteText] = useState("");
+  const [noteTitle, setNoteTitle] = useState('');
+  const [noteText, setNoteText] = useState('');
   const [errors, setErrors] = useState({});
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (!validatePreSubmit()) return;
-    createNote(noteTitle, noteText);
-    setNoteTitle("");
-    setNoteText("");
-    toggleCreateNoteModal();
-  }
-
   function validatePreSubmit() {
-    let errors = {};
+    const errorsObject = {};
     let formIsValid = true;
 
     if (noteTitle.trim().length === 0) {
       formIsValid = false;
-      errors["noteTitle"] = "Note title can't be empty!";
+      errorsObject.noteTitle = "Note title can't be empty!";
     }
 
     if (noteText.trim().length === 0) {
       formIsValid = false;
-      errors["noteText"] = "Note body can't be empty!";
+      errorsObject.noteText = "Note body can't be empty!";
     }
 
-    setErrors(errors);
+    setErrors(errorsObject);
     return formIsValid;
   }
 
   function validateAndHandleChange(e) {
-    if (e.target.className.includes("note-modal__title")) {
+    if (e.target.className.includes('note-modal__title')) {
       if (e.target.value.trim().length > 50) {
         setErrors((prevErrors) => ({
           ...prevErrors,
@@ -58,7 +49,7 @@ export default function CreateNoteModal({ toggleCreateNoteModal }) {
       setNoteTitle(e.target.value);
     }
 
-    if (e.target.className.includes("note-modal__text")) {
+    if (e.target.className.includes('note-modal__text')) {
       if (e.target.value.trim().length > 0) {
         setErrors((prevErrors) => ({
           ...prevErrors,
@@ -69,14 +60,23 @@ export default function CreateNoteModal({ toggleCreateNoteModal }) {
     }
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!validatePreSubmit()) return;
+    createNote(noteTitle, noteText);
+    setNoteTitle('');
+    setNoteText('');
+    toggleCreateNoteModal();
+  }
+
   return ReactDOM.createPortal(
     <>
-      <div className="overlay"></div>
+      <div className="overlay" />
       <form className="note-modal" onSubmit={handleSubmit}>
         <div className="note-modal__close">
           <button type="button" onClick={toggleCreateNoteModal}>
             <svg className="note-modal__close-icon">
-              <use href={sprite + "#cancel"} />
+              <use href={`${sprite}#cancel`} />
             </svg>
           </button>
         </div>
@@ -101,9 +101,11 @@ export default function CreateNoteModal({ toggleCreateNoteModal }) {
         {errors.noteText ? (
           <div className="note-modal__error-msg">{errors.noteText}</div>
         ) : null}
-        <button className="note-modal__btn">Save</button>
+        <button type="submit" className="note-modal__btn">
+          Save
+        </button>
       </form>
     </>,
-    document.querySelector("#create-portal")
+    document.querySelector('#create-portal')
   );
 }

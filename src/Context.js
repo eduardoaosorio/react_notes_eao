@@ -1,24 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { nanoid } from "nanoid";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 
 export const Context = React.createContext();
 
-export default function Provider(props) {
+export default function Provider({ children }) {
   const [homeNotes, setHomeNotes] = useState(
-    () => JSON.parse(localStorage.getItem("homeNotes")) || []
+    () => JSON.parse(localStorage.getItem('homeNotes')) || []
   );
   const [trashNotes, setTrashNotes] = useState(
-    () => JSON.parse(localStorage.getItem("trashNotes")) || []
+    () => JSON.parse(localStorage.getItem('trashNotes')) || []
   );
   const [inTrash, setInTrash] = useState(false);
-  const [searchInputValue, setSearchInputValue] = useState("");
+  const [searchInputValue, setSearchInputValue] = useState('');
 
   useEffect(() => {
-    localStorage.setItem("homeNotes", JSON.stringify(homeNotes));
+    localStorage.setItem('homeNotes', JSON.stringify(homeNotes));
   }, [homeNotes]);
 
   useEffect(() => {
-    localStorage.setItem("trashNotes", JSON.stringify(trashNotes));
+    localStorage.setItem('trashNotes', JSON.stringify(trashNotes));
   }, [trashNotes]);
 
   function createNote(title, text) {
@@ -36,15 +37,13 @@ export default function Provider(props) {
     setHomeNotes((prevHomeNotes) =>
       prevHomeNotes.map((note) => {
         if (note.id !== id) return note;
-        else {
-          return {
-            id,
-            title,
-            text,
-            creationDate: note.creationDate,
-            latestUpdateDate: new Date().toLocaleString(),
-          };
-        }
+        return {
+          id,
+          title,
+          text,
+          creationDate: note.creationDate,
+          latestUpdateDate: new Date().toLocaleString(),
+        };
       })
     );
   }
@@ -54,10 +53,8 @@ export default function Provider(props) {
     setHomeNotes((prevHomeNotes) =>
       prevHomeNotes.filter((note) => {
         if (note.id !== id) return true;
-        else {
-          newTrashNote = note;
-          return false;
-        }
+        newTrashNote = note;
+        return false;
       })
     );
     setTrashNotes((prevTrashNotes) => [newTrashNote, ...prevTrashNotes]);
@@ -68,10 +65,8 @@ export default function Provider(props) {
     setTrashNotes((prevTrashNotes) =>
       prevTrashNotes.filter((note) => {
         if (note.id !== id) return true;
-        else {
-          noteToHome = note;
-          return false;
-        }
+        noteToHome = note;
+        return false;
       })
     );
     setHomeNotes((prevHomeNotes) => [noteToHome, ...prevHomeNotes]);
@@ -114,7 +109,11 @@ export default function Provider(props) {
         },
       }}
     >
-      {props.children}
+      {children}
     </Context.Provider>
   );
 }
+
+Provider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
